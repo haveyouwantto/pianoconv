@@ -1,0 +1,95 @@
+package tk.hywt.piano.conv;
+
+public class Notes {
+	public static String getNote(int note) {
+		switch (note) {
+		case 48:
+			return "a";
+		case 50:
+			return "b";
+		case 52:
+			return "c";
+		case 53:
+			return "d";
+		case 55:
+			return "e";
+		case 57:
+			return "f";
+		case 59:
+			return "g";
+		case 60:
+			return "h";
+		case 62:
+			return "i";
+		case 64:
+			return "j";
+		case 65:
+			return "k";
+		case 67:
+			return "l";
+		case 69:
+			return "m";
+		case 71:
+			return "n";
+		case 72:
+			return "o";
+		case 74:
+			return "p";
+		case 76:
+			return "q";
+		case 77:
+			return "r";
+		case 79:
+			return "s";
+		case 81:
+			return "t";
+		case 83:
+			return "u";
+		case 84:
+			return "v";
+		case 86:
+			return "w";
+		case 88:
+			return "x";
+		case 89:
+			return "y";
+		case 91:
+			return "z";
+		case 51:
+			return "[";
+		case 54:
+			return "~";
+		case 56:
+			return ";";
+		case 58:
+			return "1";
+		case 61:
+			return "2";
+		case 63:
+			return "3";
+		case 66:
+			return "4";
+		case 68:
+			return "5";
+		case 70:
+			return "6";
+		case 73:
+			return "7";
+		case 75:
+			return "8";
+		case 78:
+			return "9";
+		case 80:
+			return "0";
+		case 82:
+			return "\"";
+		case 85:
+			return ",";
+		case 87:
+			return ".";
+		case 90:
+			return "?";
+		}
+return "";
+	}
+}
