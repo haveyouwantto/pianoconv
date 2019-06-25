@@ -1,4 +1,4 @@
-package tk.hywt.piano;
+package tk.hywt.piano.play;
 
 public class Notes {
 	public static int getNote(String note) {

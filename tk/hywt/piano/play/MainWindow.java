@@ -1,4 +1,4 @@
-package tk.hywt.piano;
+package tk.hywt.piano.play;
 
 import java.awt.EventQueue;
 

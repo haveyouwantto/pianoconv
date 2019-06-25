@@ -1,4 +1,4 @@
-package tk.hywt.piano;
+package tk.hywt.piano.play;
 
 import java.io.IOException;
 
@@ -7,7 +7,6 @@ import javax.sound.midi.MidiChannel;
 import javax.sound.midi.MidiSystem;
 import javax.sound.midi.MidiUnavailableException;
 import javax.sound.midi.Synthesizer;
-import tk.hywt.piano.Notes;
 
 public class Main {
 

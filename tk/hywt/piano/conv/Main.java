@@ -34,7 +34,8 @@ public class Main {
     	}
     	return sb.toString();
     }
-	public static String load(File file) throws InvalidMidiDataException, IOException, MidiUnavailableException {
+	public static void load(File file) throws InvalidMidiDataException, IOException, MidiUnavailableException {
+		
 		Sequence seq = MidiSystem.getSequence(file);
 		int km = 0;
 		String out = "";
@@ -58,18 +59,12 @@ public class Main {
 				}}
 				if (message instanceof ShortMessage) {
 					ShortMessage sm = (ShortMessage) message;
-					if (sm.getCommand() == NOTE_ON) {
+					if (sm.getCommand() == NOTE_ON&&sm.getData2()!=0) {
 						int key = sm.getData1();
 						if (event.getTick() > km || event.getTick() < km) {
-							// out=out+")";
-							/*
-							for (int j = 1; j < (int) (event.getTick() / 250) - km; j++) {
-								out = out + " ";
-							}*/
-							// out=out+"(";
 							km = (int) (event.getTick());
 						}
-						//Force octave
+						//Keep within octave
 						while(key<48) {
 							key=key+12;
 						}
@@ -87,8 +82,29 @@ public class Main {
 				}
 			}
 		}
-		int space = (int) (seq.getResolution()*(bpm/60d/4d));
-		int spaces=(int) (seq.getResolution()*(bpm/480d));
+		int space = 0;
+		
+		if(Window.isforcedBPM) {
+			bpm=Window.forcedBPM;
+		}
+		
+		switch(Window.mode) {
+		case 0:
+			space = (int) (seq.getResolution()*(bpm/60d));
+			break;
+		case 1:
+			space = (int) (seq.getResolution()*(bpm/120d));
+			break;
+		case 2:
+			space = (int) (seq.getResolution()*(bpm/240d));
+			break;
+		case 3:
+			space = (int) (seq.getResolution()*(bpm/480d));
+			break;
+		case 4:
+			space = (int) (seq.getResolution()*(bpm/960d));
+			break;
+		}
 		//Print Result
 		for (int j = 0; j < km; j++) {
 			if (a.get(j) != null) {
@@ -102,34 +118,24 @@ public class Main {
 				out=out.replaceAll("\\s","");
 				if(out.length()>1) {
 				//System.out.println(j+" : "+out);
-				out2=out2+"("+removeDuplicate(out)+")";}
+				out2="("+removeDuplicate(out)+")";}
 				else if(out.length()==0) {
-					out2=out2+"-";
+					out2=Window.divider+"";
 				}else {
-					out2=out2+out;
+					out2=out;
+				}
+				if(Window.isUpperCase) {
+					out2=out2.toUpperCase();
 				}
 				out="";
+				Window.getOutput().append(out2);
+				out2="";
 			}
+			Window.getProgressBar().setValue(j*1000/km);
+			Window.getProgressBar().setString(j+" / "+km);
 		}	
-		System.out.println("bpm : "+bpm+" | res : "+seq.getResolution()+" | ticks : "+km+" | output length :"+out2.length()+" | space : "+space+" ; "+(seq.getResolution()/4));
+		System.out.println("bpm : "+bpm+" | res : "+seq.getResolution()+" | ticks : "+km+" | space : "+space+" ; "+(seq.getResolution()/4));
 		//System.out.print(space);
-		/*
-		
-		for(int k = 0; k < out.length(); k++) {
-			mem=mem+out.charAt(k);
-			if(k%space==0||k==out.length()-1) {
-				snip=mem.replaceAll("\\s","");
-				if(snip.length()>1) {
-				out2=out2+"("+snip+")";
-				}else if(snip.length()==0) {
-					out2=out2+" ";
-				}else {
-					out2=out2+snip;
-				}
-				mem="";
-			}
-		}
-		// System.out.println(a.keySet());*/
-		return out2+"        ";
+		Window.getProgressBar().setValue(1000);
 	}
 }
