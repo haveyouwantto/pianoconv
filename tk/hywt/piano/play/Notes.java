@@ -55,6 +55,8 @@ public class Notes {
 			return 89;
 		case "z":
 			return 91;
+		case "_":
+			return 49;
 		case "[":
 			return 51;
 		case "~":

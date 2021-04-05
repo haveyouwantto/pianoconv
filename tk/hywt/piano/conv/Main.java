@@ -104,6 +104,9 @@ public class Main {
 		case 4:
 			space = (int) (seq.getResolution()*(bpm/960d));
 			break;
+		case 5:
+			space = (int) (seq.getResolution()*(bpm/1920d));
+			break;
 		}
 		//Print Result
 		for (int j = 0; j < km; j++) {

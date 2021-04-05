@@ -102,11 +102,12 @@ public class Window {
 		// Resolution
 		JComboBox<String> resolution = new JComboBox<String>();
 		resolution.setBounds(47, 29, 102, 21);
-		resolution.addItem("È«Òô·û");
-		resolution.addItem("¶ş·ÖÒô·û");
-		resolution.addItem("ËÄ·ÖÒô·û");
-		resolution.addItem("°Ë·ÖÒô·û");
-		resolution.addItem("Ê®Áù·ÖÒô·û");
+		resolution.addItem("å…¨éŸ³ç¬¦");
+		resolution.addItem("äºŒåˆ†éŸ³ç¬¦");
+		resolution.addItem("å››åˆ†éŸ³ç¬¦");
+		resolution.addItem("å…«åˆ†éŸ³ç¬¦");
+		resolution.addItem("åå…­åˆ†éŸ³ç¬¦");
+		resolution.addItem("ä¸‰åäºŒåˆ†éŸ³ç¬¦");
 		resolution.setSelectedIndex(2);
 		settings.add(resolution);
 
@@ -159,7 +160,7 @@ public class Window {
 					Main.load(opened);
 				} catch (InvalidMidiDataException | IOException | MidiUnavailableException e) {
 					// TODO Auto-generated catch block
-					output.setText("´íÎó: " + e.toString());
+					output.setText("é”™è¯¯: " + e.toString());
 					e.printStackTrace();
 				}
 
@@ -172,7 +173,7 @@ public class Window {
 			public void actionPerformed(ActionEvent ae) {
 				JFileChooser fileChooser = new JFileChooser();
 				fileChooser.setCurrentDirectory(new File("."));
-				FileNameExtensionFilter Filter = new FileNameExtensionFilter("MIDI ÎÄ¼ş", midi);
+				FileNameExtensionFilter Filter = new FileNameExtensionFilter("MIDI æ–‡ä»¶", midi);
 				// Attaching Filter to JFileChooser object
 				fileChooser.setFileFilter(Filter);
 				int returnValue = fileChooser.showOpenDialog(null);
